@@ -1,6 +1,6 @@
 <?php
 ///// Public Routes
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@home')->name('home');
 Auth::routes();
 
 Route::get('/blog/article', 'ArticleController@index')->name('article.index');
@@ -11,6 +11,17 @@ Route::get('/blog/category/{slug}', 'CategoryController@show')->name('category.s
 ///// Admin routes
 ///// Article
 Route::prefix('admin')->group( function() {
+	// Admin dashboard
+	Route::get('/', 'HomeController@admin')->name('admin');
+	///// User
+	Route::prefix('/user')->name('user.')->group( function() {
+		Route::get('/', 'UserController@admin')->name('admin');
+		Route::get('/edit/{article}', 'UserController@edit')->name('edit');
+		
+		Route::patch('/{article}', 'UserController@update')->name('update');
+		Route::delete('/{article}', 'UserController@destroy')->name('destroy');
+	});
+	//// Article
 	Route::prefix('/blog/article')->name('article.')->group( function() {
 		Route::get('/', 'ArticleController@admin')->name('admin');
 		Route::get('/create', 'ArticleController@create')->name('create');

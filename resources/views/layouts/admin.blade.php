@@ -22,10 +22,16 @@
 <body>
     <div id="app">
         @include('layouts._nav')
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container-fluid">
+            <div class="row">
+                <aside class="col-sm-2">
+                    @include('layouts._side')
+                </aside>
+                <main class="col-sm-10 mt-4">
+                    @yield('content')
+                </main>
+            </div>
+        </div>
     </div>
 </body>
 </html>

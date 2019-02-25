@@ -12,10 +12,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Article $article)
+    public function home(Article $article)
     {
         $articles = $article->publicList();
         
-        return view('article.index', compact('articles') );
+        return view( 'article.index', compact('articles') );
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function admin()
+    {       
+        return view( 'admin' );
+    } 
 }
